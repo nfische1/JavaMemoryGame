@@ -1,0 +1,146 @@
+/**
+ * 
+ * 
+ */
+
+package memorygame;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+import java.awt.Font;
+
+
+public class Memory extends JFrame {
+
+private JPanel contentPane;
+
+private JPanel parentPanel;
+
+private JPanel headerPanel;
+
+
+/**
+* Launch the application.
+*/
+public static void main(String[] args) {
+EventQueue.invokeLater(new Runnable() {
+public void run() {
+try {
+Memory frame = new Memory();
+frame.setVisible(true);
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+});
+}
+
+/**
+* Create the frame.
+*/
+public Memory() {
+
+BorderLayout borderLayout = new BorderLayout();
+
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+setBounds(100, 100, 450, 300);
+
+
+contentPane = new JPanel();
+headerPanel = new JPanel();
+headerPanel.setForeground(Color.WHITE);
+headerPanel.setBackground(Color.GREEN);
+JLabel lblTheMemoryGame = new JLabel("The Memory Game");
+lblTheMemoryGame.setFont(new Font("SimSun", Font.PLAIN, 36));
+lblTheMemoryGame.setHorizontalAlignment(SwingConstants.CENTER);
+lblTheMemoryGame.setForeground(Color.BLACK);
+headerPanel.add(lblTheMemoryGame);
+
+parentPanel = new JPanel();
+parentPanel.setLayout(new BorderLayout());
+
+parentPanel.add(headerPanel, BorderLayout.PAGE_START);
+parentPanel.add(contentPane, BorderLayout.CENTER);
+setContentPane(parentPanel);
+
+
+contentPane.setBackground(Color.YELLOW);
+contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+contentPane.setLayout(borderLayout);
+
+
+
+
+
+contentPane.setLayout(new GridLayout(3, 4, 10, 10));
+
+Icon image1 = new ImageIcon(getClass().getResource("image1.jpg"));
+
+Icon image2 = new ImageIcon(getClass().getResource("image2.jpg"));
+
+Icon image3 = new ImageIcon(getClass().getResource("image3.jpg"));
+
+Icon image4= new ImageIcon(getClass().getResource("image4.jpg"));
+
+Icon image5 = new ImageIcon(getClass().getResource("image5.jpg"));
+
+Icon image6 = new ImageIcon(getClass().getResource("image6.jpg"));
+
+
+ArrayList<Icon> inconlist = new ArrayList<>();
+inconlist.add(image1);
+inconlist.add(image2);
+inconlist.add(image3);
+inconlist.add(image4);
+inconlist.add(image5);
+inconlist.add(image6);
+inconlist.add(image1);
+inconlist.add(image2);
+inconlist.add(image3);
+inconlist.add(image4);
+inconlist.add(image5);
+inconlist.add(image6);
+
+Collections.shuffle(inconlist);
+
+for (Icon inconArrayList : inconlist) {
+
+JButton btn = new JButton();
+btn.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent arg0) {
+
+if (btn.getIcon() == null) {
+btn.setIcon(inconArrayList);
+} else {
+btn.setIcon(null);
+}
+
+}
+});
+contentPane.add(btn);
+
+}
+
+}
+}
+
+
+
+
